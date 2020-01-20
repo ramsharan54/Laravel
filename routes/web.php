@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 Route::get('/about','PageController@about');
 Route::get('/contact','PageController@contact');
-Route::middleware('web')->group(function(){
+Route::group(['middleware' => ['web']],function(){
 	Route::get('login/facebook','Auth\AuthController@RedirectToFacebook');
 	Route::get('login/facebook/callback','Auth\AuthController@getFacebookCallback');
 });
