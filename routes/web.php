@@ -12,16 +12,29 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('tests.home');
 });
+Route::get('/about','PageController@about');
+Route::get('/contact','PageController@contact');
+Route::middleware('web')->group(function(){
+	Route::get('login/facebook','Auth\AuthController@RedirectToFacebook');
+	Route::get('login/facebook/callback','Auth\AuthController@getFacebookCallback');
+});
+
+
+
+
 Route::get('/getdata', function(){
   return response()->json(['website'=>'AppDividend']);
 });
 
-Route::resource('shows','ShowsController');
+//Route::get('/home','PageController@home');
+
+
+/*Route::resource('shows','ShowsController');
 Route::get('forms','FormsController@create');
 Route::post('forms','FormsController@store');
-Route::get('show/{id}','FormsController@index');
+Route::get('show/{id}','FormsController@index');*/
 
 // forms for pdf
 /*Route::get('/forms','UserDetailsController@create');
